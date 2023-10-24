@@ -2,14 +2,15 @@
 #include<stdbool.h>
 
 /*
-* Algoritmo de intercambio BubbleSort
+* Algoritmo de ordenacion por seleccion SelectionSort.
 */
 
-int main () {
+int main() {
   int values[] = {8,4,5,7,1,0,9,2,3,6,-1,-6,-9,12,14,20};
   int aux = 0;
   int rounds = 0;
   bool order = false;
+  int PosMin;
 
   int valuesLength = sizeof(values) / sizeof(*values);
 
@@ -20,18 +21,16 @@ int main () {
     }
   }
 
-  while(!order) {
-    order = true;
-    for(int i = 0; i < (valuesLength - 1 - rounds); i++) {
-      if ( values[i] > values[i + 1] ) {
-        aux = values[i + 1];
-        values[i + 1] = values[i];
-        values[i] = aux;
-        order = false;
-      }
-    }
+  printf("\n");
 
-    rounds++;
+  for(int i = 0; i < valuesLength; i++) {
+    PosMin = i;
+    for(int j = i + 1; j < valuesLength; j++) {
+      if (values[PosMin] > values[j]) PosMin = j;
+    }
+    aux = values[i];
+    values[i] = values[PosMin];
+    values[PosMin] = aux;
 
     printf("\n");
 
@@ -41,6 +40,7 @@ int main () {
         printf(" - ");
       }
     }
+
   }
 
   printf("\n");
